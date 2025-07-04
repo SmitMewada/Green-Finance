@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Finance Classifier</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        form { display: flex; flex-direction: column; gap: 15px; }
+        input, textarea, button { padding: 10px; font-size: 16px; }
+        button { background: #28a745; color: white; border: none; cursor: pointer; }
+        button:hover { background: #218838; }
+        #result { margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Green Finance Transaction Classifier</h1>
+    
+    <form id="classifyForm">
+        <input type="text" id="name" placeholder="Transaction Name" required>
+        <input type="number" id="amount" placeholder="Amount" step="0.01" required>
+        <textarea id="description" placeholder="Transaction Description" rows="3" required></textarea>
+        <button type="submit">Classify Transaction</button>
+    </form>
+    
+    <div id="result" style="display: none;"></div>
+
+    <script>
+        const API_URL = 'http://localhost:8000';
+        
+        document.getElementById('classifyForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            const description = document.getElementById('description').value;
+            
+            try {
+                const response = await fetch(`${API_URL}/classify`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, amount, description })
+                });
+                
+                const result = await response.json();
+                
+                document.getElementById('result').innerHTML = `
+                    <h3>Classification Result:</h3>
+                    <p><strong>Category:</strong> ${result.category}</p>
+                    <p><strong>Confidence:</strong> ${result.confidence}</p>
+                `;
+                document.getElementById('result').style.display = 'block';
+                
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <h3>Error:</h3>
+                    <p>Failed to classify transaction. Please try again.</p>
+                `;
+                document.getElementById('result').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
