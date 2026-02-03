@@ -326,14 +326,6 @@ green-finance-ai/
 
 ---
 
-## 📚 Detailed Documentation
-
-- [Project Logs (PDF)](docs/project_logs.pdf) — Complete experiment journal with all iterations
-- [AWS Architecture (MD)](infrastructure/mlops_architecture.md) — Detailed MLOps design
-- [Architecture Diagram (Mermaid)](infrastructure/architecture.mermaid) — Visual system overview
-
----
-
 ## 🛠️ Technology Stack
 
 | Category | Technology |
@@ -348,13 +340,9 @@ green-finance-ai/
 
 ## 📬 Contact
 
-**Smit Patel**
-- LinkedIn: [your-linkedin]
-- Email: [your-email]
-- Portfolio: [your-portfolio]
+**Smit Mewada**
+- LinkedIn: https://www.linkedin.com/in/smitmewada/
+- Email: smitmewada009@gmail.com
 
----
 
-## License
 
-MIT License - see [LICENSE](LICENSE) for details.
